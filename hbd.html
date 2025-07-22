@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Khushi!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap');
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #fbc7ac, #f9a9bc);
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      color: #333;
+      padding: 20px;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3.5rem;
+      color: #ff3366;
+      margin-bottom: 10px;
+      text-shadow: 0 0 8px #ff6699;
+    }
+
+    #message-box {
+      background: white;
+      padding: 20px 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(255, 102, 153, 0.3);
+      max-width: 350px;
+      text-align: center;
+      font-size: 1.25rem;
+      min-height: 80px;
+      user-select: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    #message-box:active {
+      background: #ffe6f0;
+    }
+
+    .confetti {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background-color: #ff4d88;
+      opacity: 0.9;
+      animation: confetti-fall 3s forwards;
+      z-index: 9999;
+      border-radius: 2px;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #aa5577;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Happy Birthday Khushi! 🎉🎂</h1>
+
+  <div id="message-box" role="button" tabindex="0" aria-label="Tap to see birthday message">
+    Tap here to reveal a special message
+  </div>
+
+  <footer>Made especially for Khushi</footer>
+
+<script>
+  const messages = [
+    "Wishing you a day filled with joy!",
+    "May your year ahead be bright and successful.",
+    "Keep smiling and shining every day! ✨",
+    "Celebrate your special day with happiness! 🎈🎂",
+    "Happy Birthday, Khushi! 🎉🎉🎉"
+  ];
+
+  let index = 0;
+  const msgBox = document.getElementById('message-box');
+
+  function showNextMessage() {
+    if (index < messages.length) {
+      msgBox.textContent = messages[index];
+      createConfetti();
+      index++;
+    } else {
+      index = 0;
+      msgBox.textContent = "Tap here to reveal a special message";
+    }
+  }
+
+  msgBox.addEventListener('click', showNextMessage);
+  msgBox.addEventListener('keypress', e => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      showNextMessage();
+    }
+  });
+
+  function createConfetti() {
+    const confettiCount = 20;
+    for(let i=0; i<confettiCount; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 60%)`;
+      confetti.style.animationDuration = (2 + Math.random()*2) + 's';
+      confetti.style.transform = `rotate(${Math.random()*360}deg)`;
+      document.body.appendChild(confetti);
+
+      setTimeout(() => {
+        confetti.remove();
+      }, 3000);
+    }
+  }
+
+</script>
+</body>
+</html>
